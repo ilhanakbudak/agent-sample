@@ -1,0 +1,24 @@
+# --- Day 1: skeleton ---
+pydantic>=2
+pydantic-settings>=2
+
+# --- Day 2: RAG (uncomment as you build) ---
+langchain
+langchain-community
+langchain-openai
+chromadb
+faiss-cpu
+sentence-transformers
+pypdf
+langchain_huggingface
+langchain_chroma
+langchain_ollama
+langchain_anthropic
+
+# --- Day 3: agents ---
+langgraph
+mcp
+
+# --- Day 4: API ---
+fastapi
+uvicorn[standard]

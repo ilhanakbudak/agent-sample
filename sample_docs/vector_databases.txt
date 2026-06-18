@@ -1,0 +1,39 @@
+Vector Databases: A Comparison
+
+A vector database stores embedding vectors and answers nearest-neighbor queries. Unlike a
+traditional database that matches exact values, a vector database finds items whose meaning
+is closest to a query, which is the foundation of semantic search and retrieval-augmented
+generation.
+
+Chroma is a lightweight, open-source vector store designed for ease of use. It persists to
+disk, keeps the original text and metadata next to each vector, and supports metadata
+filtering out of the box. It is an excellent default for small to medium projects and for
+prototyping because it requires almost no configuration.
+
+FAISS, short for Facebook AI Similarity Search, is a library rather than a full database.
+It is extremely fast and memory-efficient and supports many approximate nearest neighbor
+index types. However, it does not manage persistence or metadata for you; those are manual.
+FAISS shines when raw speed on a large in-memory index is the priority.
+
+Qdrant is a production-grade vector database written in Rust. It offers rich payload
+filtering, a network API, snapshots, and horizontal scaling. It is a strong choice when a
+system needs robust filtering and must run as a service.
+
+pgvector is an extension that adds vector columns and similarity search to PostgreSQL. Its
+main appeal is operational simplicity for teams that already run Postgres, since it avoids
+introducing a separate system.
+
+Pinecone and Weaviate are managed, cloud-native vector databases. They remove the operational
+burden of running infrastructure at the cost of a subscription and of sending data to a
+third party.
+
+Choosing among these depends on scale, persistence needs, filtering requirements, and
+whether the data can leave your environment. For a portable prototype, Chroma or FAISS is
+usually right. For a filtered, scalable production service, Qdrant, pgvector, or a managed
+option is more appropriate.
+
+Approximate nearest neighbor algorithms are what make these systems fast. Instead of
+comparing a query against every stored vector, they build an index, such as HNSW, a
+hierarchical navigable small world graph, that finds close matches in logarithmic time while
+sacrificing a small, tunable amount of accuracy. The recall-versus-speed trade-off is
+controlled by index parameters that should be tuned to the workload.
